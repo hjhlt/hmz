@@ -73,10 +73,10 @@ class Utils{
         void init(int timeslot);
 
         //对文件描述符设置阻塞
-        int setnoblocking(int fd);
+        int setnonblocking(int fd);
 
         //将内核事件表注册读事件，ET模式，选择开启EPOLLONESHOT
-        void add(int epollfd,int fd,bool one_shot,int TRIGMode);
+        void addfd(int epollfd,int fd,bool one_shot,int TRIGMode);
 
         //处理信号函数
         static void sig_handler(int sig);

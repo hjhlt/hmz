@@ -33,7 +33,7 @@ void sort_timer_lst::add_timer(util_timer *timer){
     add_timer(timer,head);
 }
 
-void sort_timer::adjust_timer(util_timer *timer){
+void sort_timer_lst::adjust_timer(util_timer *timer){
     if(!timer) return ;
 
     util_timer *tmp=timer->next;
@@ -47,8 +47,8 @@ void sort_timer::adjust_timer(util_timer *timer){
         add_timer(timer,head);
     }
     else {
-        timer->prev->next=timer-next;
-        timer->next_prev=timer->prev;
+        timer->prev->next=timer->next;
+        timer->next->prev=timer->prev;
         add_timer(timer,timer->next);
     }
 
@@ -85,10 +85,10 @@ void sort_timer_lst::del_timer(util_timer *timer){
 void sort_timer_lst::tick(){
     if(!head) return;
     time_t cur=time(NULL);
-    util_time *tmp=head;
+    util_timer *tmp=head;
     while(tmp){
         if(cur<tmp->expire) break;
-        tmp->cb-func(tmp->user_data);
+        tmp->cb_func(tmp->user_data);
         head=tmp->next;
         if(head){
             head->prev=NULL;
@@ -166,10 +166,10 @@ void Utils::sig_handler(int sig){
 //设置信号函数
 void Utils::addsig(int sig,void(handler)(int),bool restart){
     struct sigaction sa;
-    memset(sa,'\0',sizeof(sa));
+    memset(&sa,'\0',sizeof(sa));
     sa.sa_handler=handler;
     if(restart){
-        sa.sa_flags|=SA_RRESTART;
+        sa.sa_flags|=SA_RESTART;
     }
     sigfillset(&sa.sa_mask);
     assert(sigaction(sig,&sa,NULL)!=-1);
