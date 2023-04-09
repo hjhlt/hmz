@@ -76,7 +76,7 @@ class http_conn{
 
     public:
         void init(int sockfd,const sockaddr_in &addr,char *,int ,int ,string user,string password,string sqlname);
-        void choose_conn(bool real_close=true);
+        void close_conn(bool real_close=true);
         void process();
         bool read_once();
         bool write();
@@ -125,7 +125,7 @@ class http_conn{
         int m_write_idx;
         CHECK_STATE m_check_state;
         METHOD m_method;
-        char m_read_file[FILENAME_LEN];
+        char m_real_file[FILENAME_LEN];
         char *m_url;
         char *m_version;
         char *m_host;
