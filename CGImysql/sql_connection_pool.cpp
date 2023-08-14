@@ -32,7 +32,7 @@ void connection_pool::init(string url,string User,string PassWord,string DBName,
 
     for(int i=0;i<MaxConn;i++){
         MYSQL *con=NULL;
-        mysql_init(con);
+        con=mysql_init(con);
 
         if(con==NULL){
             LOG_ERROR("MySQL Error");

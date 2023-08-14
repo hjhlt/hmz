@@ -7,7 +7,7 @@ class Config{
     public:
 
         Config();
-        ~Config();
+        ~Config(){};
 
         void parse_arg(int argc,char*argv[]);
 
@@ -18,7 +18,7 @@ class Config{
         int LOGWrite;
 
         //触发组合模式
-        int TRIGmode;
+        int TRIGMode;
 
         //listenfd触发模式
         int LISTENTrigmode;

@@ -8,7 +8,7 @@ Config::Config(){
     LOGWrite=0;
 
     //触发组合模式，默认listenfd LT+ connfd LT
-    TRIGMode=0;
+    TRIGMode=3;
 
     //listenfd触发模式默认LT
     LISTENTrigmode=0;
@@ -34,7 +34,7 @@ Config::Config(){
 
 void Config::parse_arg(int argc,char*argv[]){
     int opt;
-    const char *str="p:l:m:o:s:t:c:a";
+    const char *str="p:l:m:o:s:t:c:a:";
     while((opt=getopt(argc,argv,str))!=-1){
         switch(opt)
         {

@@ -67,8 +67,8 @@ class sort_timer_lst{
 
 class Utils{
     public:
-        Utils();
-        ~Utils();
+        Utils(){};
+        ~Utils(){};
 
         void init(int timeslot);
 
